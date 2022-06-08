@@ -9,6 +9,7 @@ from .dataset import CustomDataset
 def get_transform(mode='train'):
     if mode == 'train':
         transform = A.Compose([
+        A.Resize(512, 512),
         A.HorizontalFlip(0.5),
         A.Normalize(
             mean=[0.485, 0.456, 0.406],
@@ -19,6 +20,7 @@ def get_transform(mode='train'):
 
     elif mode == 'val':
         transform = A.Compose([
+            A.Resize(512, 512),
             A.Normalize(
             mean=[0.485, 0.456, 0.406],
             std=[0.229, 0.224, 0.225],

@@ -65,18 +65,18 @@ class Trainer:
         hist = np.zeros((self.config['n_class'], self.config['n_class']))
         total_loss = 0.0
 
-        for batch_idx, (data, target, _) in enumerate(self.train_loader):
+        for batch_idx, (data, target) in enumerate(self.train_loader):
             data, target = data.to(self.device), target.to(self.device)
 
             self.optimizer.zero_grad()
             output, aux1, aux2 = self.model(data)
-            loss = self.loss_fn(output, target.to(torch.float32))
+            loss, dice, bce = self.loss_fn(output, target.to(torch.float32))
             loss.backward()
             self.optimizer.step()
 
             total_loss += loss.item()
             #  output = torch.argmax(output, dim=1).detach().cpu().numpy()
-            output = torch.sigmoid(output).detach().cpu().numpy()
+            output = torch.sigmoid(output).squeeze().detach().cpu().numpy()
             output = (output > 0.5) * 1
             target = target.detach().cpu().numpy()
             hist = add_hist(hist, output, target)
@@ -119,11 +119,11 @@ class Trainer:
         hist = np.zeros((self.config['n_class'], self.config['n_class']))
 
         with torch.no_grad():
-            for batch_idx, (data, target, _) in enumerate(self.val_loader):
+            for batch_idx, (data, target) in enumerate(self.val_loader):
                 data, target = data.to(self.device), target.to(self.device)
 
                 output, aux1, aux2 = self.model(data)
-                loss = self.loss_fn(output, target.to(torch.float32))
+                loss, dice, bce = self.loss_fn(output, target.to(torch.float32))
 
                 total_loss += loss.item()
                 #  output = torch.argmax(output, dim=1).detach().cpu().numpy()

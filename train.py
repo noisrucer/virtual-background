@@ -4,7 +4,7 @@ import numpy as np
 import argparse
 import numpy as np
 
-import data_loader as module_dataloader
+import dataloader as module_dataloader
 import loss as module_loss
 import metric as module_metric
 import model as module_model
@@ -26,8 +26,7 @@ def main(config):
     logger = config.get_logger('train')
 
     # [2] DataLoader
-    train_loader = config.init_obj(module_dataloader, 'train_loader')
-    val_loader = config.init_obj(module_dataloader, 'val_loader')
+    train_loader, val_loader = config.init_obj(module_dataloader, 'data_loaders')
 
     # [3] SMP Model
     model = config.init_obj(module_model, 'model')

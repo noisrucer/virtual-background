@@ -1,0 +1,56 @@
+{
+    "project_name": "VirtualBackground",
+    "device": "cuda",
+    "n_gpu": 1,
+    "run_id": "version1",
+    "n_class": 2,
+
+    "model": {
+        "type": "BiSeNet",
+        "args": {
+            "in_channels": 3,
+            "num_classes": 2,
+            "training": true
+        }
+    },
+
+    "data_loaders":{
+        "type": "get_dataloaders",
+        "args": {
+            "img_dir": "/opt/ml/input/virtual-background/data/clip_img",
+            "matting_dir": "/opt/ml/input/virtual-background/data/matting",
+            "csv_path": "/opt/ml/input/virtual-background/data/dataset.csv",
+            "batch_size": 16,
+            "shuffle": true,
+            "num_workers": 2
+        }
+    },
+
+    "optimizer": {
+        "type": "Adam",
+        "args": {
+            "lr": 0.002,
+            "weight_decay": 0.00001,
+            "amsgrad": true
+        }
+    },
+
+    "loss": "combined_loss",
+
+    "metrics": ["segmentation_metrics"],
+
+    "lr_scheduler": {
+        "type": "StepLR",
+        "args": {
+            "step_size": 5,
+            "gamma": 0.3
+        }
+    },
+
+    "trainer": {
+        "epochs": 50,
+        "save_dir": "saved/",
+        "save_period": 1,
+        "verbosity": 2
+    }
+}

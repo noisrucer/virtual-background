@@ -9,3 +9,4 @@ cudnn-11.3-linux-x64-v8.2.1.32.tgz
 cuda/
 result/
 saved/
+model_weights/

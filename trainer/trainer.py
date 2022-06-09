@@ -40,6 +40,8 @@ class Trainer:
         for epoch in range(self.start_epoch, self.epochs + 1):
             # [1] Train
             train_log_dict, val_log_dict = self._train_epoch(epoch)
+            if epoch % 10 != 0:
+                continue
 
             # [2] Convert metric log to dataframe
             self.train_met.update_by_dict(train_log_dict)
@@ -122,7 +124,7 @@ class Trainer:
             for batch_idx, (data, target) in enumerate(self.val_loader):
                 data, target = data.to(self.device), target.to(self.device)
 
-                output, aux1, aux2 = self.model(data)
+                output = self.model(data)
                 loss, dice, bce = self.loss_fn(output, target.to(torch.float32))
 
                 total_loss += loss.item()
@@ -165,7 +167,6 @@ class Trainer:
             'epoch': epoch,
             'model_state': self.model.state_dict(),
             'optimizer_sate': self.optimizer.state_dict(),
-            'model_config': self.model_config,
             'config': self.config
         }
 

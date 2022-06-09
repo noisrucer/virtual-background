@@ -7,7 +7,7 @@ from .attention_refinement_module import AttentionRefinementModule
 from .feature_fusion_module import FeatureFusionModule
 
 class BiSeNet(nn.Module):
-    def __init__(self, in_channels=3, num_classes=2, training=True):
+    def __init__(self, in_channels=3, num_classes=1, training=True):
         super().__init__()
         self.training = training
 

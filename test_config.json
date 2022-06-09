@@ -1,0 +1,17 @@
+{
+    "model_path": "saved/models/unet_v1/checkpoint-epoch30.pth",
+    "submission_path": "./submission/unet_v1.csv",
+    "test_loader":{
+        "type": "COCOSegDataLoader",
+        "args": {
+            "data_dir": "../data",
+            "json_path": "../data/test.json",
+            "mode": "test",
+            "batch_size": 32,
+            "shuffle": false,
+            "drop_last": false,
+            "num_workers": 2
+        }
+    }
+
+}

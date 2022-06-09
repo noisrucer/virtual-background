@@ -2,7 +2,7 @@
 
 | ![space-1.jpg](images/the-rock.png) | 
 |:--:| 
-| *[BiSeNet](https://arxiv.org/abs/1808.00897)* |>
+| The Rock |>
 
 In online meetings, people frequently avoid to show their backgrounds due to privacy. The virtual background is widely used in many applications such as Zoom conference.
 

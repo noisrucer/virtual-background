@@ -33,7 +33,7 @@ BiSeNet effectively secures **sizeable receptive field** and **rich spatial info
 
 # Results
 
-* Final Epoch: 8
+* Final Epoch: `9`
 
 **Training set**
 
@@ -89,13 +89,17 @@ python train.py -c config.json
 
 # Inference
 
+Download the model weight [checkpoint-epoch9.pth](https://drive.google.com/file/d/1X4uSjg9VZLJ4SYaX7GHI3VlL1i9UOEVo/view?usp=sharing) and move to `model_weights` directory.
+
 * Single image - You can try the model for a single image in `virtual_background_test.ipynb`.
 
 * Webcam demo - Execute `webcam_demo.py` for real-time webcam demo. Make sure you run on **local** environment unless you set up camera devices in the Linux server.
 
 # Conclusion
 
-In this project, my main goal was to implement the whole project pipeline from scratch and make it **work**. Sophisticated libraries such as **mmsegmentation** provide efficient and easy pipeline with good performance. On the other hand, implementing from scratch often yields many logic errors that are hard to debug. Moreoever, even one error might cause the whole project to fail. 
+In this project, my main goal was to implement the whole project pipeline from scratch and "make it **work**". Sophisticated libraries such as **mmsegmentation** provide efficient and easy pipeline with good performance. On the other hand, implementing from scratch often yields many logic errors that are hard to debug. Moreoever, even one error might cause the whole project to fail. 
 
-Although it was a simple project, I learned a lot during the project. It showed great result on validation set and real-world datasets. In the next project, I'll do more cool and challenging things!
+Experimenting with many loss functions, hyperparmeters, etc, the model worked quite well!
+
+It was a simple project but I learned a lot during the project. It showed great result on validation set and real-world datasets. In the next project, I'll do more cool and challenging stuff!
 

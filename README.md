@@ -31,6 +31,30 @@ The semantic segmentation model selected for this project is [BiSeNet](https://a
 
 BiSeNet effectively secures **sizeable receptive field** and **rich spatial information** using the Spatial Path and Context Path. If you want to look at the **detailed explanation of the paper and the implementation**, check out my **blog** and **deep-learning-papers repo** [BiSeNet Guide & Implementation](https://noisrucer.github.io/paper/bisenet/) or [BiSeNet Repo](https://github.com/noisrucer/deep-learning-papers/tree/master/BiSeNet)
 
+# Results
+
+* Final Epoch: 8
+
+**Training set**
+
+|Metric|Value|
+|:---|:---|
+|Loss|0.0887432|
+|Accuracy|0.962712|
+|mIoU|0.926885|
+|Background IoU|0.91744|
+|Person IoU|0.93633|
+
+**Validation set**
+
+|Metric|Value|
+|:---|:---|
+|Loss|0.0899316|
+|Accuracy|0.962299|
+|mIoU|0.927337|
+|Background IoU|0.927285|
+|Person IoU|0.927389|
+
 # Training
 
 1. Clone the repo
@@ -53,6 +77,25 @@ kaggle datasets download -d laurentmih/aisegmentcom-matting-human-datasets
 python generate_csv.py
 ```
 
-5. Change the 
-5. 
+5. Change the data directories accordingly in `config.json` "model" args. Also, try out different hyperparameters by yourself
+
+6. Train the model
+
+```bash
+python train.py -c config.json
+```
+
+7. Log files and model checkpoints will be saved in `saved/` folder
+
+# Inference
+
+* Single image - You can try the model for a single image in `virtual_background_test.ipynb`.
+
+* Webcam demo - Execute `webcam_demo.py` for real-time webcam demo. Make sure you run on **local** environment unless you set up camera devices in the Linux server.
+
+# Conclusion
+
+In this project, my main goal was to implement the whole project pipeline from scratch and make it **work**. Sophisticated libraries such as **mmsegmentation** provide efficient and easy pipeline with good performance. On the other hand, implementing from scratch often yields many logic errors that are hard to debug. Moreoever, even one error might cause the whole project to fail. 
+
+Although it was a simple project, I learned a lot during the project. It showed great result on validation set and real-world datasets. In the next project, I'll do more cool and challenging things!
 

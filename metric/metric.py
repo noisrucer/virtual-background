@@ -3,7 +3,7 @@ import numpy as np
 import pandas as pd
 
 
-def single_hist(pred, mask, n_class=11):
+def single_hist(pred, mask, n_class=2):
     valid_filter = (mask >= 0) & (mask < n_class)
     hist = np.bincount(
         n_class * mask[valid_filter].astype(int) + pred[valid_filter],
@@ -12,7 +12,7 @@ def single_hist(pred, mask, n_class=11):
     return hist
 
 
-def add_hist(hist, preds, masks, n_class=11):
+def add_hist(hist, preds, masks, n_class=2):
     for pred, mask in zip(preds, masks):
         hist += single_hist(pred.flatten(), mask.flatten(), n_class)
 

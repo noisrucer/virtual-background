@@ -9,7 +9,7 @@
         "type": "BiSeNet",
         "args": {
             "in_channels": 3,
-            "num_classes": 2,
+            "num_classes": 1,
             "training": true
         }
     },
@@ -19,8 +19,8 @@
         "args": {
             "img_dir": "/opt/ml/input/virtual-background/data/clip_img",
             "matting_dir": "/opt/ml/input/virtual-background/data/matting",
-            "csv_path": "/opt/ml/input/virtual-background/data/dataset.csv",
-            "batch_size": 16,
+            "csv_path": "/opt/ml/input/virtual-background/data/dataset_20.csv",
+            "batch_size": 4,
             "shuffle": true,
             "num_workers": 2
         }
@@ -29,7 +29,7 @@
     "optimizer": {
         "type": "Adam",
         "args": {
-            "lr": 0.002,
+            "lr": 8e-4,
             "weight_decay": 0.00001,
             "amsgrad": true
         }
@@ -42,7 +42,7 @@
     "lr_scheduler": {
         "type": "StepLR",
         "args": {
-            "step_size": 5,
+            "step_size": 100,
             "gamma": 0.3
         }
     },

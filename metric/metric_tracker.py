@@ -21,7 +21,6 @@ class MetricTracker:
         return self.dict2df(self.result_dict())
 
     def ious2dict(self, ious: list):
-        print(type(ious))
         cls_names = pd.read_csv('class_dict.csv')['name'].values
         ious_dict = {}
 
